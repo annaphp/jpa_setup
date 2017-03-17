@@ -1,10 +1,12 @@
 package model;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 @Embeddable
 public class Stamp {
 	
+	@Column(name="stamp_name")
 	private String name;
 
 	public Stamp(String name) {

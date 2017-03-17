@@ -17,7 +17,7 @@ public class ParcelRepo {
 	
 	public Parcel save(Parcel parcel){
 		em.persist(parcel);
-		System.out.println(parcel);
+		System.out.println("***"+parcel);
 		return parcel;	
 	}
 	

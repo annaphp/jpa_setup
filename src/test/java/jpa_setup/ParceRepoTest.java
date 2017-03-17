@@ -25,7 +25,8 @@ public class ParceRepoTest {
 	
 	@Before
 	public void setup(){
-		 parcel = new Parcel("urgent", "small", "Edmonton");
+		 Stamp mainStamp = new Stamp("Marka");
+		 parcel = new Parcel("urgent", "small", "Edmonton", mainStamp);
 	}
 	
 	@Test
@@ -52,7 +53,7 @@ public class ParceRepoTest {
 	}
 	
 	@Test 
-	public void shouldAddRemoveLavels(){
+	public void shouldAddRemoveLabels(){
 		parcel = repo.save(parcel);
 		parcel.getLabels().put("Red", "bad");
 		

@@ -8,6 +8,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -15,28 +16,34 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="parcel")
+@Table(name="PARCEL")
 public class Parcel {
 	
-	@Column(name = "id")
 	@Id
 	@GeneratedValue
 	private Long id;
 	private String name;
 	private String weight;
+	
+	@Column(name="addressee")
 	private String destination;
+	
+	@Embedded
+	private Stamp mainStamp;
+	
 	@ElementCollection(fetch = FetchType.EAGER)
 	private Set<Stamp> stamps = new HashSet<>();
+	
 	@ElementCollection(fetch = FetchType.EAGER)
 	private Map<String,String> labels = new HashMap<>();
 	
-	public Parcel() {
-	}
+	public Parcel() {}
 	
-	public Parcel(String name, String weight, String destination) {
+	public Parcel(String name, String weight, String destination, Stamp mainStamp) {
 		this.name = name;
 		this.weight = weight;
 		this.destination = destination;
+		this.mainStamp = mainStamp;
 	}
 
 	public Set<Stamp> getStamps() {
@@ -87,6 +94,14 @@ public class Parcel {
 
 	public void setDestination(String destination) {
 		this.destination = destination;
+	}
+	
+	public Stamp getMainStamp() {
+		return mainStamp;
+	}
+
+	public void setMainStamp(Stamp mainStamp) {
+		this.mainStamp = mainStamp;
 	}
 
 	@Override
